@@ -1,5 +1,5 @@
 /* ===== API 配置 ===== */
-const API_BASE = "https://你的项目名.railway.app"; // 替换为 Railway 分配的域名
+const API_BASE = "https://aiwebexam-production.up.railway.app";
 
 const API = {
   getExam: () => fetchExamData(),
