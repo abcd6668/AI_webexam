@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>在线考试系统</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- 加载中 -->
+    <div id="loading" class="screen">
+      <div class="spinner"></div>
+      <p>正在加载试卷…</p>
+    </div>
+
+    <!-- 考生信息 -->
+    <div id="info-screen" class="screen hidden">
+      <div class="card info-card">
+        <h1 class="exam-title" id="exam-title">在线考试</h1>
+        <p class="exam-desc" id="exam-desc"></p>
+        <div class="field">
+          <label for="student-name">考生姓名 <span class="required">*</span></label>
+          <input id="student-name" type="text" placeholder="请输入真实姓名" maxlength="20" autocomplete="off" />
+          <span class="field-error hidden" id="name-error">请输入姓名</span>
+        </div>
+        <div class="field">
+          <label for="student-id">考号（选填）</label>
+          <input id="student-id" type="text" placeholder="请输入考号" maxlength="30" autocomplete="off" />
+        </div>
+        <button id="start-btn" class="btn btn-primary btn-lg">开始考试</button>
+      </div>
+    </div>
+
+    <!-- 答题界面 -->
+    <div id="exam-screen" class="screen hidden">
+      <header class="exam-header">
+        <div class="header-left">
+          <span class="exam-name" id="header-exam-name"></span>
+          <span class="student-badge" id="header-student-name"></span>
+        </div>
+        <div class="header-right">
+          <div class="timer" id="timer" title="剩余时间"></div>
+          <div class="progress-info">
+            <span id="answered-count">0</span>/<span id="total-count">0</span> 题已答
+          </div>
+        </div>
+      </header>
+
+      <div class="exam-body">
+        <!-- 题目导航 -->
+        <aside class="nav-panel">
+          <div class="nav-header">答题卡</div>
+          <div class="nav-grid" id="nav-grid"></div>
+          <div class="nav-legend">
+            <span class="legend-dot answered"></span>已答
+            <span class="legend-dot unanswered"></span>未答
+            <span class="legend-dot current"></span>当前
+          </div>
+          <button id="submit-btn" class="btn btn-danger btn-block">提交试卷</button>
+        </aside>
+
+        <!-- 题目内容 -->
+        <main class="question-panel" id="question-panel">
+        </main>
+      </div>
+    </div>
+
+    <!-- 提交确认弹窗 -->
+    <div id="confirm-modal" class="modal-overlay hidden">
+      <div class="modal">
+        <h2>确认提交</h2>
+        <p id="confirm-msg"></p>
+        <div class="modal-actions">
+          <button id="confirm-cancel" class="btn btn-secondary">继续答题</button>
+          <button id="confirm-ok" class="btn btn-danger">确认提交</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 结果界面 -->
+    <div id="result-screen" class="screen hidden">
+      <div class="card result-card">
+        <div class="result-icon">✓</div>
+        <h2>提交成功</h2>
+        <p class="result-student" id="result-student"></p>
+        <div class="result-stats">
+          <div class="stat">
+            <span class="stat-value" id="result-total"></span>
+            <span class="stat-label">共 N 题</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value answered" id="result-answered"></span>
+            <span class="stat-label">已作答</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value unanswered" id="result-unanswered"></span>
+            <span class="stat-label">未作答</span>
+          </div>
+        </div>
+        <p class="result-time" id="result-time"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="exam.js"></script>
+</body>
+</html>
